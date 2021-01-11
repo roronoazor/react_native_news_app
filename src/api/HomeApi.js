@@ -1,6 +1,6 @@
 import { BASE_URL, api_key } from "./constants"
 import axios from "axios"
-import { getHomeNewsAction, setHomeNewsAction } from "../actions/HomeActionCreators"
+import { getHomeNewsAction, setHomeNewsAction, setEntertainmentNewsAction  } from "../actions/HomeActionCreators"
 import store from "../../store";
 
 
@@ -26,7 +26,7 @@ export function getEntertainmentPageNews(){
     const headers = {"X-Api-Key": "deaf012f67454ec2b8026b4a4a54017f"}
     axios.get(url, {headers: headers})
         .then(res=>{
-            store.dispatch(setHomeNewsAction(res.data));
+            store.dispatch(setEntertainmentNewsAction(res.data));
             console.log("get: ", store.getState())
             return res.data;
         }).catch(error=>{

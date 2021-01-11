@@ -12,14 +12,14 @@ function LoadingIndicatorView() {
 
 export default function NewsDetailComponent(props){
     let state = store.getState()
-    let {home_detail} = state.home
+    let {entertainment_detail} = state.home
     
 
     return (
       <Container>
         <WebView
           originWhitelist={['*']}
-          source={{ uri: home_detail.url }}  
+          source={{ uri: entertainment_detail.url }}  
           renderLoading={LoadingIndicatorView}
           startInLoadingState={true}
         />

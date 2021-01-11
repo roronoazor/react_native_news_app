@@ -8,3 +8,13 @@ export const setHomeNewsAction = (data) => {
 export const setNewsDetailAction = (data) => {
     return {type: "news/newsDetail", payload: data}
 }
+
+export const setEntertainmentNewsAction = (data) => {
+    let s = {type: "entertainment/setNews", payload: data}
+    return s;
+}
+
+export const setEntertainmentDetailAction = (data) => {
+    return {type: "entertainment/newsDetail", payload: data}
+}
+

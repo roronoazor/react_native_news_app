@@ -6,6 +6,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import  HomePageComponent  from "../components/HomeComponent";
 import  NewsDetailComponent   from "../components/NewsDetailComponent";
+import  EntertainmentDetailComponent   from "../components/EntertainmentDetailComponent";
 import EntertainmentPageComponent from '../components/EntertainmentPageComponent';
 
 
@@ -77,7 +78,7 @@ function EntertainmentStackScreen() {
   return (
     <EntertainmentStack.Navigator>
       <EntertainmentStack.Screen name="entertainment" component={EntertainmentPageComponent} />
-      <EntertainmentStack.Screen name="Details" component={DetailsScreen} />
+      <EntertainmentStack.Screen name="entertainment-detail" component={EntertainmentDetailComponent} />
     </EntertainmentStack.Navigator>
   );
 }
@@ -119,7 +120,7 @@ export function BottomTab(){
           <Tab.Screen name="general" component={HomeStackScreen} />
           <Tab.Screen name="entertainment" component={EntertainmentStackScreen}/>
           <Tab.Screen name="sports" component={HomeStackScreen} />
-          <Tab.Screen name="business" component={HomeStackScreen} />
+          <Tab.Screen name="business" component={HomeStackScreen} /> 
         </Tab.Navigator>
   );
 }
