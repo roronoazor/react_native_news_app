@@ -18,3 +18,11 @@ export const setEntertainmentDetailAction = (data) => {
     return {type: "entertainment/newsDetail", payload: data}
 }
 
+export const setGenericNewsAction = (data) => {
+    let s = {type: "generic/setNews", payload: data, news_type: data.news_type}
+    return s;
+}
+
+export const setGenericDetailAction = (data) => {
+    return {type: "generic/genericDetail", payload: data}
+}

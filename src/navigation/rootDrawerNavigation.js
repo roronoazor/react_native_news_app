@@ -3,6 +3,7 @@ import { Button, View , Text } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import { BottomTab } from "./rootBottomBarNavigation"; 
+import {DeveloperComponent} from "../components/DeveloperComponent";
  
 
 
@@ -26,6 +27,8 @@ function NotificationsScreen({ navigation }) {
   );
 }
 
+
+
 const Drawer = createDrawerNavigator();
 
 export function DrawerNav() {
@@ -33,6 +36,7 @@ export function DrawerNav() {
       <Drawer.Navigator initialRouteName="Home" >
         <Drawer.Screen name="Home" component={BottomTab} options={{ title: 'Home' }} />
         <Drawer.Screen name="Notifications" component={NotificationsScreen} />
+        <Drawer.Screen name="Developer" component={DeveloperComponent} />
       </Drawer.Navigator>
   );
 }

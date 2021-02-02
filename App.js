@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
@@ -8,9 +8,20 @@ import  store  from "./store.js";
 import  { BottomTab }  from "./src/navigation/rootBottomBarNavigation";
 import  { DrawerNav }  from "./src/navigation/rootDrawerNavigation";
 import { Root } from "native-base";
+import * as Font from 'expo-font';
+
 
 
 export default function App() {
+
+
+  useEffect(() => {
+  (async () => await Font.loadAsync({
+    Roboto: require('native-base/Fonts/Roboto.ttf'),
+    Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
+  }))();
+   }, [])
+
   return (
     
     <NavigationContainer> 

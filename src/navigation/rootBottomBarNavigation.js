@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, Text, View } from 'react-native';
+import { Button, SafeAreaView, Text, View, TouchableOpacity } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -8,7 +8,21 @@ import  HomePageComponent  from "../components/HomeComponent";
 import  NewsDetailComponent   from "../components/NewsDetailComponent";
 import  EntertainmentDetailComponent   from "../components/EntertainmentDetailComponent";
 import EntertainmentPageComponent from '../components/EntertainmentPageComponent';
+import GenericPageComponent from '../components/GenericNewsComponent';
+import GenericDetailComponent from '../components/GenericDetailComponent';
 
+
+// implements my custom header function
+function CustomHeader({navigation}){
+  return (
+    <View style={{backgroundColor:"#fff", marginTop:5, marginBottom:5, padding:10, flexDirection:"row", justifyContent:"space-between"}}>
+      <TouchableOpacity onPress={()=>navigation.openDrawer()}>
+        <Ionicons name="menu" size={30}/>
+      </TouchableOpacity>
+      <Text>Hello world</Text>
+    </View>
+  )
+}
 
 function DetailsScreen() {
   return (
@@ -58,7 +72,7 @@ function HomeStackScreen(props) {
     <HomeStack.Navigator
        screenOptions={{
          headerStyle: {
-          backgroundColor: "#00BFFF"
+          backgroundColor: "#FFF"  // use this to style the header backgorund color
          },
          headerTintColor: "#fff"
         }}
@@ -66,8 +80,17 @@ function HomeStackScreen(props) {
       //      headerTitle: (props) => <openDrawerButton {...props} />
      //   }}
     >
-      <HomeStack.Screen name="Home" component={HomePageComponent}/>
-      <HomeStack.Screen name="news-detail" component={NewsDetailComponent} />
+      <HomeStack.Screen name="Home" 
+      component={HomePageComponent}
+      options={{ header: ({ scene, previous, navigation }) => <CustomHeader navigation={navigation} /> }}
+      />
+      <HomeStack.Screen name="news-detail"
+       component={NewsDetailComponent}
+       options={{ title: 'reader mode',
+                   header: ({ scene, previous, navigation }) => <CustomHeader navigation={navigation} />
+       }}
+       />
+
     </HomeStack.Navigator>
   );
 }
@@ -78,8 +101,41 @@ function EntertainmentStackScreen() {
   return (
     <EntertainmentStack.Navigator>
       <EntertainmentStack.Screen name="entertainment" component={EntertainmentPageComponent} />
-      <EntertainmentStack.Screen name="entertainment-detail" component={EntertainmentDetailComponent} />
+      <EntertainmentStack.Screen name="entertainment-detail"
+       component={EntertainmentDetailComponent}
+       options={{ title: 'reader mode' }}
+       />
     </EntertainmentStack.Navigator>
+  );
+}
+
+
+// this handles the sports stack screen
+const SportStack = createStackNavigator();
+
+function SportStackScreen() {
+  return (
+    <SportStack.Navigator>
+      <SportStack.Screen name="sports" title={"soft"} component={GenericPageComponent} />
+      <SportStack.Screen name="generic-detail" 
+      component={GenericDetailComponent}
+      options={{ title: 'reader mode' }}
+      />
+    </SportStack.Navigator>
+  );
+}
+
+// this handles the business stack screen
+const BusinessStack = createStackNavigator();
+
+function BusinessStackScreen() {
+  return (
+    <BusinessStack.Navigator>
+      <BusinessStack.Screen name="business" component={GenericPageComponent} />
+      <BusinessStack.Screen name="generic-detail"
+       component={GenericDetailComponent}
+       options={{ title: 'reader mode' }} />
+    </BusinessStack.Navigator>
   );
 }
 
@@ -119,8 +175,8 @@ export function BottomTab(){
         >
           <Tab.Screen name="general" component={HomeStackScreen} />
           <Tab.Screen name="entertainment" component={EntertainmentStackScreen}/>
-          <Tab.Screen name="sports" component={HomeStackScreen} />
-          <Tab.Screen name="business" component={HomeStackScreen} /> 
+          <Tab.Screen name="sports" component={SportStackScreen} />
+          <Tab.Screen name="business" component={BusinessStackScreen} /> 
         </Tab.Navigator>
   );
 }
